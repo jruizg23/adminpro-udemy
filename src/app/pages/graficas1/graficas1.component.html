@@ -1,3 +1,10 @@
-<p>
-  graficas1 works!
-</p>
+<div class="row" *ngFor="let row of [1, 2]">
+    <div class="col-sm-6 col-12" *ngFor="let col of [1, 2]">
+        <div class="card">
+            <div class="card-body">
+                <!-- <app-grafico-dona [doughnutChartData]="getGraph(row, col).data" [doughnutChartLabels]="getGraph(row, col).labels" [doughnutChartType]="getGraph(row, col).type"></app-grafico-dona> -->
+                <app-grafico-dona [grafico]="getGraph(row, col)"></app-grafico-dona>
+            </div>
+        </div>
+    </div>
+</div>

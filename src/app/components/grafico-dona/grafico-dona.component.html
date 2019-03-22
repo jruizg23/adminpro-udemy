@@ -1,0 +1,9 @@
+<h5 class="card-title">{{ grafico.leyenda }}</h5>
+<div>
+    <div>
+        <div style="display: block">
+            <canvas baseChart [options]="graphOptions" [data]="grafico.data" [labels]="grafico.labels" [chartType]="grafico.type">
+            </canvas>
+        </div>
+    </div>
+</div>
