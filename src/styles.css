@@ -3,3 +3,11 @@
 #themecolors a {
     cursor: pointer;
 }
+
+.pointer {
+    cursor: pointer;
+}
+
+.amodifcado:not([href]):hover {
+    color: #007bff !important;
+}
