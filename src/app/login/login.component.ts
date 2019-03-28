@@ -24,7 +24,7 @@ export class LoginComponent implements OnInit {
   constructor(
     public router: Router,
     public usuarioService: UsuarioService,
-    private ngZone: NgZone
+    public ngZone: NgZone
     ) { }
 
   ngOnInit() {
@@ -56,7 +56,7 @@ export class LoginComponent implements OnInit {
 
       this.usuarioService.loginGoogle(token)
           .subscribe( resp => {
-            //window.location.href = '#/dashboard'
+            // window.location.href = '#/dashboard'
             this.ngZone.run(() => {
               this.router.navigate(['/dashboard']);
             });

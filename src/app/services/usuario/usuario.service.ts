@@ -1,10 +1,11 @@
 import { Injectable } from '@angular/core';
 import { Usuario } from 'src/app/models/usuario.model';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { URL_SERVICIOS } from 'src/app/config/config';
 import { map } from 'rxjs/operators';
 import swal from 'sweetalert';
 import { Router } from '@angular/router';
+import { transitiveScopesFor } from '@angular/core/src/render3/jit/module';
 
 
 @Injectable({
@@ -20,7 +21,6 @@ export class UsuarioService {
     public http: HttpClient,
     private router: Router
   ) {
-    console.log('Servicio de usuario listo');
     this.cargarStorage();
   }
 
@@ -102,6 +102,24 @@ export class UsuarioService {
               .pipe( map( (resp: any) => {
                 swal('Usuario creado', usuario.email, 'success');
                 return resp.usuario;
+              }));
+  }
+
+  actualizarUsuario( usuario: Usuario) {
+    const url = URL_SERVICIOS + '/usuario/' + usuario._id;
+    const headers = new HttpHeaders({
+      Authorization: `${this.tokenType} ${this.accessToken}`
+    });
+    return this.http.put(url, usuario, { headers })
+              .pipe( map( (resp: any) => {
+                this.saveStorage({
+                  id: resp.usuario._id,
+                  access_token: this.accessToken,
+                  token_type: this.tokenType,
+                  usuario: resp.usuario
+                });
+                swal('Usuario actualizado', this.usuario.email, 'success');
+                return true;
               }));
   }
 

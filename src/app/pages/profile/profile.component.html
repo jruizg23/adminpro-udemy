@@ -1,0 +1,47 @@
+<div class="row animated fadeIn">
+
+    <div class="col-lg-7">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">Perfil del usuario</h4>
+                <h6 class="card-subtitle">Nombre usuario</h6>
+                <form #f="ngForm" (ngSubmit)="guardar(f.value)" ngNativeValidate class="form p-t-20">
+                    <div class="form-group">
+                        <label for="exampleInputuname">Nombre de usuario</label>
+                        <div class="input-group">
+                            <div class="input-group-addon"><i class="ti-user"></i></div>
+                            <input [ngModel]="usuario.nombre" name="nombre" type="text" class="form-control" placeholder="Nombre de usuario" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Email de usuario</label>
+                        <div class="input-group">
+                            <div class="input-group-addon"><i class="ti-email"></i></div>
+                            <input [disabled]="usuario.google" [ngModel]="usuario.email" name="email" type="email" class="form-control" placeholder="Email de usuario" required>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-block btn-success waves-effect waves-light m-r-10">
+                      <i class="fa fa-save"></i>
+                      Guardar</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-5">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">Imagen del usuario</h4>
+                <h6 class="card-subtitle">Nombre usuario</h6>
+
+                <img src="">
+                <input type="file">
+                <br><br>
+                <button type="button" class="btn btn-block btn-success waves-effect waves-light m-r-10">
+                    <i class="fa fa-save"></i>
+                    Actualizar Imagen</button>
+            </div>
+        </div>
+    </div>
+
+</div>
