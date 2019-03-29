@@ -4,7 +4,7 @@
         <div class="card">
             <div class="card-body">
                 <h4 class="card-title">Perfil del usuario</h4>
-                <h6 class="card-subtitle">Nombre usuario</h6>
+                <h6 class="card-subtitle">{{ usuario.email }}</h6>
                 <form #f="ngForm" (ngSubmit)="guardar(f.value)" ngNativeValidate class="form p-t-20">
                     <div class="form-group">
                         <label for="exampleInputuname">Nombre de usuario</label>
@@ -32,11 +32,12 @@
         <div class="card">
             <div class="card-body" align="center">
                 <h4 class="card-title">Imagen del usuario</h4>
-                <h6 class="card-subtitle">Nombre usuario</h6>
+                <h6 class="card-subtitle">{{ usuario.email }}</h6>
 
-                <input (change)="seleccionImagen( $event.target.files[0] )" type="file">
+
                 <img *ngIf="!imagenTemp" class="w150" [src]="usuario.img | imagen">
                 <img *ngIf="imagenTemp" class="w150" [src]="imagenTemp">
+                <input (change)="seleccionImagen( $event.target.files[0] )" type="file">
                 <br><br>
                 <button (click)="cambiarImagen()" [disabled]="!imagenSubir" type="button" class="btn btn-block btn-success waves-effect waves-light m-r-10">
                     <i class="fa fa-save"></i>

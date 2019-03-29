@@ -113,12 +113,14 @@ export class UsuarioService {
     });
     return this.http.put(url, usuario, { headers })
               .pipe( map( (resp: any) => {
-                this.saveStorage({
-                  id: resp.usuario._id,
-                  access_token: this.accessToken,
-                  token_type: this.tokenType,
-                  usuario: resp.usuario
-                });
+                if (usuario._id === this.usuario._id) {
+                  this.saveStorage({
+                    id: resp.usuario._id,
+                    access_token: this.accessToken,
+                    token_type: this.tokenType,
+                    usuario: resp.usuario
+                  });
+                }
                 swal('Usuario actualizado', this.usuario.email, 'success');
                 return true;
               }));
@@ -139,5 +141,29 @@ export class UsuarioService {
         .catch( err => {
           console.error('Error subiendo el fichero', err);
         });
+  }
+
+  cargarUsuarios( offset: number = 0, limit: number = 5) {
+    const url = URL_SERVICIOS + '/usuario?offset=' + offset + '&limit=' + limit;
+    return this.http.get(url);
+  }
+
+  buscarUsuarios( termino: string ) {
+    const url = URL_SERVICIOS + '/busqueda/coleccion/usuarios/' + termino;
+    return this.http.get(url)
+      .pipe( map( (resp: any) => resp.usuarios));
+  }
+
+  borrarUsuario( id: string ) {
+    const url = URL_SERVICIOS + '/usuario/' + id;
+    const headers = new HttpHeaders({
+      Authorization: `${this.tokenType} ${this.accessToken}`
+    });
+
+    return this.http.delete(url, { headers })
+            .pipe( map( resp => {
+              swal('Usuario borrado', 'El usuario ha sido eliminado correctamente', 'success');
+              return true;
+            }));
   }
 }
