@@ -5,7 +5,7 @@ import { URL_SERVICIOS } from 'src/app/config/config';
 import { map } from 'rxjs/operators';
 import swal from 'sweetalert';
 import { Router } from '@angular/router';
-import { transitiveScopesFor } from '@angular/core/src/render3/jit/module';
+import { UploadFileService } from '../upload-file/upload-file.service';
 
 
 @Injectable({
@@ -19,7 +19,8 @@ export class UsuarioService {
 
   constructor(
     public http: HttpClient,
-    private router: Router
+    private router: Router,
+    private uploadFileService: UploadFileService
   ) {
     this.cargarStorage();
   }
@@ -123,4 +124,20 @@ export class UsuarioService {
               }));
   }
 
+  cambiarImagen( file: File, id: string) {
+    this.uploadFileService.uploadFile(file, 'usuarios', id)
+        .then( (resp: any) => {
+          this.usuario.img = resp.usuario.img;
+          swal('Imagen actualizada', this.usuario.email, 'success');
+          this.saveStorage({
+            id,
+            access_token: this.accessToken,
+            token_type: this.tokenType,
+            usuario: this.usuario
+          });
+        })
+        .catch( err => {
+          console.error('Error subiendo el fichero', err);
+        });
+  }
 }

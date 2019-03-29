@@ -11,3 +11,7 @@
 .amodifcado:not([href]):hover {
     color: #007bff !important;
 }
+
+.w150 {
+    width: 150px;
+}

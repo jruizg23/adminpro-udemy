@@ -21,7 +21,7 @@ export class UploadFileService {
         if (xhr.readyState === 4) { // Estado cuando termina el proceso de subida
           if (xhr.status === 200) {
             console.log('Imagen subida');
-            resolve(xhr.response);
+            resolve(JSON.parse(xhr.response));
           } else {
             console.log('Falló la subida');
             reject(xhr.response);
