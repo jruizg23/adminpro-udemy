@@ -121,7 +121,7 @@ export class UsuarioService {
                     usuario: resp.usuario
                   });
                 }
-                swal('Usuario actualizado', this.usuario.email, 'success');
+                swal('Usuario actualizado', usuario.email, 'success');
                 return true;
               }));
   }

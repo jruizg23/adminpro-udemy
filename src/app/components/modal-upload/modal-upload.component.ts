@@ -21,6 +21,10 @@ export class ModalUploadComponent implements OnInit {
   ngOnInit() {
   }
 
+  getOculto() {
+    return this.modalUploadService.oculto;
+  }
+
   subirImagen() {
     this.uploadFileService.uploadFile(this.imagenSubir, this.modalUploadService.tipo, this.modalUploadService.id)
       .then( (resp: any) => {
