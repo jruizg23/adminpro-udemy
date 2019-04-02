@@ -4,5 +4,6 @@ export { SidebarService } from './shared/sidebar.service';
 export { UsuarioService } from './usuario/usuario.service';
 export { LoginGuardGuard } from './guards/login-guard.guard';
 export { AdminGuard } from './guards/admin.guard';
+export { CheckTokenGuard } from './guards/check-token.guard';
 export { UploadFileService } from './upload-file/upload-file.service';
 export { MedicoService } from './medico/medico.service';

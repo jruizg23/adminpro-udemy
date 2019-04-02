@@ -4,13 +4,14 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 // Modulos
 import { AppRoutingModule } from './app-routing.module';
-import { PagesModule } from './pages/pages.module';
 
 // Componentes
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './login/register.component';
 import { HttpClientModule } from '@angular/common/http';
+import { PagesComponent } from './pages/pages.component';
+import { SharedModule } from './shared/shared.module';
 
 // import { Router } from '@angular/router';
 
@@ -19,14 +20,15 @@ import { HttpClientModule } from '@angular/common/http';
     AppComponent,
     LoginComponent,
     RegisterComponent,
+    PagesComponent
   ],
   imports: [
     BrowserModule,
-    PagesModule,
     AppRoutingModule,
     FormsModule, // Temporal
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    SharedModule
   ],
   providers: [],
   bootstrap: [AppComponent]
